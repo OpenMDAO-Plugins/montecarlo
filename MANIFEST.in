@@ -1,0 +1,3 @@
+graft src/montecarlo/sphinx_build/html
+recursive-include src/montecarlo/test *.py
+
