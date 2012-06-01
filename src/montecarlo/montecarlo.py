@@ -36,10 +36,8 @@ class MonteCarlo(HasTraits):
     dist_args = Dict(key_trait=Str,
                           allow_none=True,
                           desc='Dictionary that provides mapping between variables and '
-                          'arguments that should be passed to the surrogate model. Keys should '
-                          'match those in the surrogate dictionary. Values should be lists. '
-                          'Array sizes should be left blank (default to 1). Default key must have '
-                          'blank size value.')
+                          'arguments that are required to define their distributions. Keys should '
+                          'match those in dist_types. Values should be lists.')
     
     def __init__(self, num_samples=None, *args, **kwargs):
     
@@ -52,8 +50,6 @@ class MonteCarlo(HasTraits):
         
     def __iter__(self):
         """Return an iterator over our sets of input values"""
-        #if self.num_samples < 2: 
-        #    raise ValueError("Uniform distributions must have at least 2 samples. num_samples is set to less than 2")
         return self
                                            
     def next(self):
@@ -68,7 +64,7 @@ class MonteCarlo(HasTraits):
                         #make sure that dist_args is given
                         if parameter not in self.dist_args:
                             raise Exception("Parameters with specified distributions must "
-                                            "be supplied with input arguments in dist_Args")
+                                            "be supplied with input arguments in dist_args")
                         #compute values for given parameter. Append this to output list.
                         self.p_out = self.dist_types[parameter](*self.dist_args[parameter])
                         if type(self.p_out) == 'numpy.ndarray':
