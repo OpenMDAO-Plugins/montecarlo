@@ -5,7 +5,7 @@ DOEdriver."""
 # pylint: disable-msg=E0611,F0401
 from numpy import linspace,random,array,concatenate
 from enthought.traits.api import HasTraits
-from openmdao.lib.datatypes.api import Int, Dict, ListStr, Str
+from openmdao.lib.datatypes.api import Int, Dict, Str, List
 from openmdao.lib.casehandlers.api import ListCaseIterator
 from openmdao.main.interfaces import implements, IDOEgenerator
 
@@ -17,7 +17,7 @@ class MonteCarlo(HasTraits):
     implements(IDOEgenerator)
     
     # pylint: disable-msg=E1101
-    parameters = ListStr(iotype='in',
+    parameters = List(Str, iotype='in',
                        desc='A list of names of variables to be included '
                        'in the Monte Carlo dataset.')
     
@@ -39,9 +39,9 @@ class MonteCarlo(HasTraits):
                           'arguments that are required to define their distributions. Keys should '
                           'match those in dist_types. Values should be lists.')
     
-    def __init__(self, num_samples=None, *args, **kwargs):
+    def __init__(self, num_samples=None):
     
-        super(MonteCarlo, self).__init__(*args, **kwargs)
+        super(MonteCarlo, self).__init__()
         
         self.num = 0
         
