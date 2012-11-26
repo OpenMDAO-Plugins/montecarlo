@@ -17,7 +17,7 @@ class MonteCarlo(HasTraits):
     implements(IDOEgenerator)
     
     # pylint: disable-msg=E1101
-    parameters = List(iotype='in',
+    parameters = List(Str, iotype='in',
                        desc='A list of names of variables to be included '
                        'in the Monte Carlo dataset.')
     
