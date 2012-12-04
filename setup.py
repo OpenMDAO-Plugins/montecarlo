@@ -6,24 +6,25 @@
 
 from setuptools import setup, find_packages
 
-kwargs = {'author': '',
- 'author_email': '',
+kwargs = {'author': 'Carlin Kersch',
+ 'author_email': 'ckersch@asdl.gatech.edu',
  'classifiers': ['Intended Audience :: Science/Research',
                  'Topic :: Scientific/Engineering'],
- 'description': '',
+ 'description': 'DOEgenerator for Monte Carlo Simulation',
  'download_url': '',
+ 'entry_points': '[openmdao.doegenerator]\nmontecarlo.montecarlo.MonteCarlo=montecarlo.montecarlo:MonteCarlo',
  'include_package_data': True,
  'install_requires': ['openmdao.main'],
- 'keywords': ['openmdao'],
- 'license': '',
- 'maintainer': '',
- 'maintainer_email': '',
+ 'keywords': ['openmdao, Monte Carlo Simulation'],
+ 'license': 'GNU General Public License, version 2',
+ 'maintainer': 'Carlin Kersch',
+ 'maintainer_email': 'ckersch@asdl.gatech.edu',
  'name': 'montecarlo',
  'package_data': {'montecarlo': []},
  'package_dir': {'': 'src'},
  'packages': ['montecarlo'],
  'url': '',
- 'version': '0.3.0',
+ 'version': '0.3.1',
  'zip_safe': False}
 
 

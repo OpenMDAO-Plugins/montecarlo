@@ -3,6 +3,10 @@
 Package Metadata
 ================
 
+- **author:** Carlin Kersch
+
+- **author-email:** ckersch@asdl.gatech.edu
+
 - **classifier**:: 
 
     Intended Audience :: Science/Research
@@ -15,11 +19,19 @@ Package Metadata
     [openmdao.doegenerator]
     montecarlo.montecarlo.MonteCarlo=montecarlo.montecarlo:MonteCarlo
 
-- **keywords:** openmdao
+- **keywords:** openmdao, Monte Carlo Simulation
+
+- **license:** GNU General Public License, version 2
+
+- **maintainer:** Carlin Kersch
+
+- **maintainer-email:** ckersch@asdl.gatech.edu
 
 - **name:** montecarlo
 
 - **requires-dist:** openmdao.main
+
+- **requires-externals:** numpy
 
 - **requires-python**:: 
 
@@ -28,5 +40,7 @@ Package Metadata
 
 - **static_path:** [ '_static' ]
 
-- **version:** 0.3.0
+- **summary:** DOEgenerator for Monte Carlo Simulation
+
+- **version:** 0.3.1
 
