@@ -2,17 +2,17 @@
 Usage Guide
 ===========
 
-The primary purpose of this Monte Carlo plugin is to allow the user to
-generate a set of random sample. The random sample can be drawn
-from various random distributions defined in the numpy.random module or any user-defined distributions.
+The primary purpose of this Monte Carlo plugin is to allow the user to generate a set of random
+samples. The random sample can be drawn from various random distributions defined in the
+``numpy.random`` module or any user-defined distributions.
 
-In this usage guide an example OpenMDAO assembly file utilizing the
-Monte Carlo plugin will be discussed. The Monte Carlo plugin is implemented as a DOEgenerator so that its usage
-is similar to any other DOEgenerators as shown in the DoE tutorial from the OpenMDAO documentation,
-which can be found at http://openmdao.org/docs/index.html.
+In this usage guide, we'll discuss an example OpenMDAO assembly file utilizing the Monte Carlo
+plugin. The Monte Carlo plugin is implemented as a DOEgenerator, so its usage is similar to any
+other DOEgenerator as shown in the DoE tutorial from the OpenMDAO documentation, which can be found
+at ``http://openmdao.org/docs/index.html``.
 
-We start by importing all necessary modules, including the montecarlo module. Note that this tutorial requires you to have already
-installed the Monte Carlo plugin.
+We start by importing all necessary modules, including the montecarlo module. Note that this tutorial
+requires you to have already installed the Monte Carlo plugin.
 
 .. testcode:: import
 
@@ -27,9 +27,9 @@ installed the Monte Carlo plugin.
 
 	from numpy import random, array, std
 	
-Next we define the MonteCarlo_Test_Assembly class. This is an assembly that will
-utilize the montecarlo module to generate a random set of two variables following a uniform distribution
-from 0 to 1 and a standard normal distribution, respectively. The generated variables are fed to the paraboloid module.
+Next, we define the ``MonteCarlo_Test_Assembly`` class. This is an assembly that will utilize the montecarlo
+module to generate a random set of two variables following a uniform distribution from 0 to 1 and a standard
+normal distribution, respectively. The generated variables are fed to the paraboloid module.
 
 .. testcode:: class
 
@@ -54,15 +54,16 @@ from 0 to 1 and a standard normal distribution, respectively. The generated vari
 			
 			self.driver.workflow.add('paraboloid')
 
-Let's take a closer look at the second paragraph in the configure function of the code.
-It it quite similar to the aforementioned DoE tutorial, but has
-a different input structure. First, we define the number of samples.
+Let's take a closer look at the second paragraph in the configure function of the code. It it quite similar
+to the aforementioned DoE tutorial but has a different input structure. First, we define the number of
+samples.
 
 .. testcode:: num_samples
 
     self.driver.DOEgenerator.num_samples = 5000
 			
-Now we need to speficy the name of the parameters and their distributions. This is contained in the following three lines.
+Now we need to specify the name of the parameters and their distributions. This information is contained in
+the following three lines.
 
 .. testcode:: dist_types
 
@@ -70,31 +71,34 @@ Now we need to speficy the name of the parameters and their distributions. This 
     self.driver.DOEgenerator.dist_args = {'Default':[0,1],'y':[]}
     self.driver.DOEgenerator.parameters = ['x','y']
 			
-The first two lines contain dictionaries mapping different random distributions, in this case random.uniform
-and random.standard_normal from the numpy.random module, to different variables. The 'Default' key is a special
-key. A unspecified variable will follow the distribution associated with the 'Default' key. Each entry in the dist_types
-dictionary must have a corresponding entry in the dist_args dictionary. Note that the entry for 'y' in dist_args is an
-empty list. This is used because the standard normal distribution does not need any variables for a 1-dimensional output, but
-we still need an empty argument list in the dist_args dictionary.
+The first two lines contain dictionaries mapping different random distributions, in this case,
+``random.uniform`` and ``random.standard_normal`` from the ``numpy.random`` module, to different variables.
+The `Default` key is a special key. An unspecified variable will follow the distribution associated with the
+`Default` key. Each entry in the ``dist_types`` dictionary must have a corresponding entry in the
+``dist_args`` dictionary. Note that the entry for `y` in ``dist_args`` is an empty list. This is used because
+the standard normal distribution does not need any variables for a 1-dimensional output, but we still need an
+empty argument list in the ``dist_args`` dictionary.
 
-Finally, we specify the name of parameters as a list of strings. Note that this input is optional. If we do not specify the
-parameters, all variables will be assumed to follow the default distribution.
+Finally, we specify the name of parameters as a list of strings. Note that this input is optional. If we do
+not specify the parameters, all variables will be assumed to follow the default distribution.
 
-Next we need to set up the DoE driver. There are only two lines in this code block worth commenting on: the lines in which
-the generated random parameters are connected to the parameters that are used in simulation. In this example, the randomly generated
-x and y are connected to x and y of the paraboloid module.
+Next, we need to set up the DoE driver. Only two lines in this code block are worth commenting on: the lines
+in which the generated random parameters are connected to the parameters that are used in simulation. In this
+example, the randomly generated `x` and `y` are connected to `x` and `y` of the paraboloid module.
 
 .. testcode:: add_parameter
 
         self.driver.add_parameter('paraboloid.x',low=0,high=1)
         self.driver.add_parameter('paraboloid.y',low=0,high=1)
 			
-The critical thing to note is what the low and high variables are set to. Generally speaking, a DOEGenerator generates a set of normalized parameters,
-then the DOEdriver linearly maps those normalized parameters according to the low and high values that a user defines. However, we'd like to use
-the random set generated by the Monte Carlo plugin directly without any mapping. In this case, set low and high to 0 and 1, respectively.
+The critical thing to note is what the low and high variables are set to. Generally speaking, a DOEGenerator
+generates a set of normalized parameters; then the DOEdriver linearly maps those normalized parameters
+according to the low and high values that a user defines. However, we'd like to use the random set generated
+by the Monte Carlo plugin directly, without any mapping. In this case, set `low` and `high` to 0 and 1,
+respectively.
 
-Finally, we will utilize the following if __name__ == "__main__" statement to run the DoE andgenerate a plot of the data points, 
-utilizing a 3d scatter plot.
+Finally, we will utilize the following ``if __name__ == "__main__"`` statement to run the DoE and generate a
+plot of the data points, utilizing a 3d scatter plot.
 
 .. testcode:: main
 
