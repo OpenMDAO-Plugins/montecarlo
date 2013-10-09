@@ -5,7 +5,7 @@
 ====================
 Source Documentation
 ====================
-        
+
         
 .. index:: montecarlo.py
 
@@ -18,5 +18,18 @@ montecarlo.py
    :members:
    :undoc-members:
    :show-inheritance:
-    
+
+        
+.. index:: test_montecarlo.py
+
+.. _montecarlo.test.test_montecarlo.py:
+
+test_montecarlo.py
+------------------
+
+.. automodule:: montecarlo.test.test_montecarlo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
         

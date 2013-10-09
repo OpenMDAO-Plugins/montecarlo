@@ -9,8 +9,8 @@ Package Metadata
 
 - **classifier**:: 
 
-    Intended Audience: Science/Research
-    Topic: Scientific/Engineering
+    Intended Audience :: Science/Research
+    Topic :: Scientific/Engineering
 
 - **description-file:** README.txt
 
@@ -18,6 +18,10 @@ Package Metadata
 
     [openmdao.doegenerator]
     montecarlo.montecarlo.MonteCarlo=montecarlo.montecarlo:MonteCarlo
+    [openmdao.component]
+    test_montecarlo.MonteCarlo_Test_Assembly=test_montecarlo:MonteCarlo_Test_Assembly
+    [openmdao.container]
+    test_montecarlo.MonteCarlo_Test_Assembly=test_montecarlo:MonteCarlo_Test_Assembly
 
 - **keywords:** openmdao, Monte Carlo Simulation
 

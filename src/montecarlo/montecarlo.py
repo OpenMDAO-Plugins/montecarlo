@@ -4,7 +4,7 @@ DOEdriver."""
 
 # pylint: disable-msg=E0611,F0401
 from numpy import linspace,random,array,concatenate
-from enthought.traits.api import HasTraits
+from traits.api import HasTraits
 from openmdao.lib.datatypes.api import Int, Dict, Str, List
 from openmdao.lib.casehandlers.api import ListCaseIterator
 from openmdao.main.interfaces import implements, IDOEgenerator
