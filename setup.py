@@ -56,13 +56,11 @@ kwargs = {'author': 'Carlin Kersch',
                                  'sphinx_build/html/_static/comment-close.png',
                                  'sphinx_build/html/_modules/index.html',
                                  'sphinx_build/html/_modules/montecarlo/montecarlo.html',
-                                 'test/openmdao_log.txt',
-                                 'test/driver.csv',
                                  'test/test_montecarlo.py']},
  'package_dir': {'': 'src'},
  'packages': ['montecarlo'],
  'url': '',
- 'version': '0.3.2',
+ 'version': '0.3.3',
  'zip_safe': False}
 
 

@@ -3,11 +3,7 @@ user-defined random distributions for each variable. Plugs into the DOEgenerator
 socket on a DOEdriver."""
 
 # pylint: disable-msg=E0611,F0401
-<<<<<<< HEAD
-from numpy import linspace,random,array,concatenate
-=======
 from numpy import random, array
->>>>>>> 3f80dac93b701ee4d32c1ba6a99d750eed2d01ec
 from traits.api import HasTraits
 from openmdao.lib.datatypes.api import Int, Dict, Str, List
 from openmdao.main.interfaces import implements, IDOEgenerator
