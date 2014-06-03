@@ -7,7 +7,7 @@ import unittest
 
 from montecarlo.montecarlo import MonteCarlo
 
-from openmdao.main.api import Assembly
+from openmdao.main.api import Assembly, set_as_top
 from openmdao.lib.drivers.api import DOEdriver
 from openmdao.lib.casehandlers.api import ListCaseRecorder
 
@@ -48,7 +48,7 @@ class MonteCarlo_Test_Assembly(Assembly):
 class TestSequenceFunctions(unittest.TestCase):
 
     def setUp(self):
-        self.doe = MonteCarlo_Test_Assembly()
+        self.doe = set_as_top(MonteCarlo_Test_Assembly())
         self.doe.run()
 
         self.data = self.doe.recorders[0].get_iterator()
