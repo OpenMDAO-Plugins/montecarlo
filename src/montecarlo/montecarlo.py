@@ -2,7 +2,7 @@
 user-defined random distributions for each variable. Plugs into the DOEgenerator
 socket on a DOEdriver."""
 
-# pylint: disable-msg=E0611,F0401
+# pylint: disable=E0611,F0401
 from numpy import random, array
 from traits.api import HasTraits
 from openmdao.lib.datatypes.api import Int, Dict, Str, List
@@ -16,7 +16,7 @@ class MonteCarlo(HasTraits):
 
     implements(IDOEgenerator)
 
-    # pylint: disable-msg=E1101
+    # pylint: disable=E1101
     parameters = List(Str, iotype='in',
                       desc='A list of names of variables to be included '
                            'in the Monte Carlo dataset.')
@@ -91,5 +91,5 @@ if __name__ == "__main__":
     _test.dist_types = {'Default':random.uniform, 'y':random.standard_normal}
     _test.dist_args = {'Default':[0, 1], 'y':[]}
     for iters in _test:
-        A =  iters
-        print(A)
+        A = iters
+        print A

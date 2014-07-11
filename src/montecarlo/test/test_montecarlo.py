@@ -2,11 +2,12 @@
 Test MonteCarlo DOE generator.
 """
 
+import logging
 import unittest
 
 from montecarlo.montecarlo import MonteCarlo
 
-from openmdao.main.api import Assembly
+from openmdao.main.api import Assembly, set_as_top
 from openmdao.lib.drivers.api import DOEdriver
 from openmdao.lib.casehandlers.api import ListCaseRecorder
 
@@ -21,6 +22,7 @@ class MonteCarlo_Test_Assembly(Assembly):
         self.add('paraboloid', Paraboloid())
 
         self.add('driver', DOEdriver())
+        self.driver.log_level = logging.INFO
 
         # Configure the generator.
         self.driver.DOEgenerator = MonteCarlo()
@@ -35,10 +37,10 @@ class MonteCarlo_Test_Assembly(Assembly):
         self.driver.add_parameter('paraboloid.y', low=0, high=1)
 
         #tell the DOEdriver to also record f_xy.
-        self.driver.case_outputs = ['paraboloid.f_xy',]
+        self.driver.add_response('paraboloid.f_xy')
 
         #Simple recorder which stores the cases in memory.
-        self.driver.recorders = [ListCaseRecorder(),]
+        self.recorders = [ListCaseRecorder(),]
 
         self.driver.workflow.add('paraboloid')
 
@@ -46,10 +48,10 @@ class MonteCarlo_Test_Assembly(Assembly):
 class TestSequenceFunctions(unittest.TestCase):
 
     def setUp(self):
-        self.doe = MonteCarlo_Test_Assembly()
+        self.doe = set_as_top(MonteCarlo_Test_Assembly())
         self.doe.run()
 
-        self.data = self.doe.driver.recorders[0].get_iterator()
+        self.data = self.doe.recorders[0].get_iterator()
 
         self.x = array([case['paraboloid.x'] for case in self.data])
         self.y = array([case['paraboloid.y'] for case in self.data])

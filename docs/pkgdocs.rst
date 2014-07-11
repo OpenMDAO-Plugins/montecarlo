@@ -19,9 +19,9 @@ Package Metadata
     [openmdao.doegenerator]
     montecarlo.montecarlo.MonteCarlo=montecarlo.montecarlo:MonteCarlo
     [openmdao.component]
-    test_montecarlo.MonteCarlo_Test_Assembly=test_montecarlo:MonteCarlo_Test_Assembly
+    montecarlo.test.test_montecarlo.MonteCarlo_Test_Assembly=montecarlo.test.test_montecarlo:MonteCarlo_Test_Assembly
     [openmdao.container]
-    test_montecarlo.MonteCarlo_Test_Assembly=test_montecarlo:MonteCarlo_Test_Assembly
+    montecarlo.test.test_montecarlo.MonteCarlo_Test_Assembly=montecarlo.test.test_montecarlo:MonteCarlo_Test_Assembly
 
 - **keywords:** openmdao, Monte Carlo Simulation
 
@@ -46,5 +46,5 @@ Package Metadata
 
 - **summary:** DOEgenerator for Monte Carlo Simulation
 
-- **version:** 0.3.3
+- **version:** 0.3.5
 
